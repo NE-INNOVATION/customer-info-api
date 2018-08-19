@@ -1,0 +1,4 @@
+applications:
+- name: customers_api
+  command: npm start
+  buildpack: nodejs_buildpack
