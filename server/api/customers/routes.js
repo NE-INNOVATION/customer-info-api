@@ -1,5 +1,12 @@
 const express = require('express')
+var rn = require('random-number');
 const router = express.Router({mergeParams: true})
+
+var gen = rn.generator({
+  min:  100000
+, max:  999999
+, integer: true
+})
 
 let customers = [];
 
@@ -19,11 +26,11 @@ let getCustomerInfo = (id) => {
 let saveCustomerInfo = (data) => {
   let customer = '';
   if(data.id !== ''){
-    customer = customers.find( x => x.id === data.id );
+    customer = customers.find( x => x.id === data.id);
   }else{
     customer = {};
+    customer.quoteid = gen()
   }
-  customer.quoteid = Math.random() * 1000 + customers.length + 1,
   customer.firstName = data.firstName
   customer.lastName = data.lastName
   customer.dob = data.dob
