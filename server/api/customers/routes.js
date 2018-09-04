@@ -8,7 +8,7 @@ router.route('/customerInfo/:id')
     res.send(JSON.stringify(getCustomerInfo(req.params.id)))
   })
   .post((req, res, next) => {
-    res.send(JSON.stringify({result : saveCustomerInfo(req.body)}))
+    res.send(JSON.stringify(saveCustomerInfo(req.body)))
   })
 
 let getCustomerInfo = (id) => {
@@ -23,7 +23,7 @@ let saveCustomerInfo = (data) => {
   }else{
     customer = {};
   }
-  // customer.id = customers.length + 1,
+  customer.quoteid = Math.random() * 1000 + customers.length + 1,
   customer.firstName = data.firstName
   customer.lastName = data.lastName
   customer.dob = data.dob
@@ -36,7 +36,7 @@ let saveCustomerInfo = (data) => {
     customers.push(customer)
   }
 
-  return customers.length;
+  return { crn : customers.length, quoteid : customer.quoteid };
 }
 
 module.exports = router;
