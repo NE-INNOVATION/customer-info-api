@@ -30,7 +30,7 @@ let saveCustomerInfo = (data) => {
     customer = customers.find( x => x.id === data.id);
   }else{
     customer = {};
-    customer.quoteId = gen()
+    customer.quoteId = gen().toString()
   }
   customer.firstName = data.firstName
   customer.lastName = data.lastName
