@@ -14,8 +14,11 @@ const createDbConnection = () => {
 const getDbConnection = () => {
     return new Promise((resolve, reject) => {
         mongo.connect(getConnectionString(), {
-            connectTimeoutMS: 10000,
-            useNewUrlParser: true
+            connectTimeoutMS: 30000,
+            useNewUrlParser: true,
+            keepAlive: 1, 
+            reconnectTries: 30, 
+            reconnectInterval: 2000
         },
             (err, client) => {
                 if (err) {
@@ -52,7 +55,7 @@ const addCustomer = async (customerInfo) => {
         console.log(`Error - ${error}`)
     }
     console.log(`customer with QuoteID - ${customerInfo.quoteId} ${action}`)
-    client.close()
+    // client.close()
     return objectId
 }
 
