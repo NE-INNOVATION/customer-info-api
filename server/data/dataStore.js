@@ -49,6 +49,7 @@ const addCustomer = async (customerInfo) => {
         action = 'upserted'
     } catch (error) {
         console.log(`Failed to update mongo - QuoteID : ${customerInfo.quoteId}`)
+        console.log(`Error - ${error}`)
     }
     console.log(`customer with QuoteID - ${customerInfo.quoteId} ${action}`)
     client.close()
