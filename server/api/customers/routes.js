@@ -35,7 +35,7 @@ let saveCustomerInfo = (data) => {
   customer.firstName = data.firstName
   customer.lastName = data.lastName
   customer.dob = data.dob
-  customer.stAddress = data.stAddress
+  customer.stAddress = data.stAddr
   customer.apt = data.apt
   customer.zip = data.zipCode
   
