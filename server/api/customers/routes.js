@@ -46,7 +46,7 @@ let saveCustomerInfo = (data) => {
 
   dataStore.addCustomer(customer)
 
-  return { crn : customers.length, quoteid : customer.quoteid };
+  return { crn : customers.length, quoteid : customer.quoteId };
 }
 
 module.exports = router;
