@@ -1,6 +1,7 @@
 const express = require('express')
 var rn = require('random-number');
 const router = express.Router({mergeParams: true})
+const dataStore = require('../../data/dataStore')
 
 var gen = rn.generator({
   min:  100000
@@ -42,6 +43,8 @@ let saveCustomerInfo = (data) => {
     customer.id = customers.length + 1
     customers.push(customer)
   }
+
+  dataStore.addCustomer(customer)
 
   return { crn : customers.length, quoteid : customer.quoteid };
 }
