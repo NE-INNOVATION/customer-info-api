@@ -9,25 +9,30 @@ var gen = rn.generator({
 , integer: true
 })
 
-let customers = [];
+var crnGen = rn.generator({
+  min:  100000000
+, max:  999999999
+, integer: true
+})
 
 router.route('/customerInfo/:id')
-  .get((req, res, next) => {
-    res.send(JSON.stringify(getCustomerInfo(req.params.id)))
+  .get(async (req, res, next) => {
+    res.send(JSON.stringify(await getCustomerInfo(req.params.id)))
   })
-  .post((req, res, next) => {
-    res.send(JSON.stringify(saveCustomerInfo(req.body)))
+  .post(async (req, res, next) => {
+    res.send(JSON.stringify(await saveCustomerInfo(req.body)))
   })
 
-let getCustomerInfo = (id) => {
+let getCustomerInfo = async (id) => {
   console.log('Returning Customer #', id)
-  return customers.find( x => x.id === id )
+  let record = await dataStore.findCustomer(id)
+  return record
 }
 
-let saveCustomerInfo = (data) => {
+let saveCustomerInfo = async (data) => {
   let customer = '';
   if(data.id !== ''){
-    customer = customers.find( x => x.id === data.id);
+    customer = await dataStore.findCustomer(data.id)
   }else{
     customer = {};
     customer.quoteId = gen().toString()
@@ -40,13 +45,11 @@ let saveCustomerInfo = (data) => {
   customer.zip = data.zipCode
   
   if(data.id === '') {
-    customer.id = customers.length + 1
-    customers.push(customer)
+    customer.id = crnGen().toString()
   }
-
   dataStore.addCustomer(customer)
 
-  return { crn : customers.length, quoteid : customer.quoteId };
+  return { crn : customer.id, quoteid : customer.quoteId };
 }
 
 module.exports = router;
