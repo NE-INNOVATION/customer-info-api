@@ -50,7 +50,7 @@ jobs:
          podman build . -t quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
+          podman push --log-level=debug quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
