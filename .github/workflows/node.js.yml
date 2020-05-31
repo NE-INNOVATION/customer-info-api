@@ -38,6 +38,7 @@ jobs:
         echo ::set-output name=image-name::$(echo quay.io/${{ secrets.registry_org }}/customer-info-api})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
         echo ::set-output name=docker_repo::$(echo /${{ secrets.registry_org }}/customer-info-api) 
+        echo "##[set-output name=image_path;]$(echo 'neinnovationorg/customer-info-api')"
     - name: Login to Podman
       id: login
       run:  |
@@ -46,10 +47,10 @@ jobs:
          podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
-         podman build . -t quay.io/${{ secrets.registry_org }}/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
+         podman build . -t quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/${{ secrets.registry_org }}/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
+          podman push quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
@@ -63,14 +64,14 @@ jobs:
           'project development'
           'delete all --selector app=customer-info-api'
           'status'
-          'tag --source=docker quay.io/${{ secrets.registry_org }}/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }} development/vehicles-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}'
-          'new-app quay.io/${{ secrets.registry_org }}/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}'
+          'tag --source=docker quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }} development/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}'
+          'new-app quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}'
           'expose services/customer-info-api'
     - name: Scan Image
       uses: Azure/container-scan@v0
       continue-on-error: true
       with:
-        image-name: quay.io/${{ secrets.registry_org }}/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
+        image-name: quay.io/${{ steps.consts.outputs.image_path }}:${{ steps.extract_branch.outputs.branch }}-${{ steps.extract_branch.outputs.sha_short }}
         username: ${{ secrets.docker_username }}
         password: ${{ secrets.docker_password }}
         token: ${{ github.token }}
