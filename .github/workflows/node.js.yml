@@ -38,7 +38,7 @@ jobs:
         echo ::set-output name=image-name::$(echo quay.io/${{ secrets.registry_org }}/customer-info-api})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
         echo ::set-output name=docker_repo::$(echo /${{ secrets.registry_org }}/customer-info-api) 
-        echo "##[set-output name=image_path;]$(echo 'neinnovationorg/customer-info-api')"
+        echo "##[set-output name=image_path;]$(echo neinnovationorg/customer-info-api)"
     - name: Login to Podman
       id: login
       run:  |
