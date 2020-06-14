@@ -1,0 +1,74 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: customer-info-api
+  namespace: development
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: customer-info-api
+    deploymentconfig: customer-info-api
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      creationTimestamp: null
+      labels:
+        app: customer-info-api
+        deploymentconfig: customer-info-api
+    spec:
+      containers:
+      - env:
+        - name: CONNECTION_STRING
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_connection
+              name: mongo-connection
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_db_name
+              name: mongo-connection
+        - name: COLLECTION_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: mongo_collection_name
+              name: mongo-connection
+        image: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+        imagePullPolicy: IfNotPresent
+        name: customer-info-api
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - customer-info-api
+      from:
+        kind: ImageStreamTag
+        name: customer-info-api:dev
+        namespace: development
+      lastTriggeredImage: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+    type: ImageChange
+  - type: ConfigChange

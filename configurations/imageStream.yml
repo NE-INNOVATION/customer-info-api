@@ -1,0 +1,43 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    openshift.io/image.dockerRepositoryCheck: "2020-06-11T22:56:44Z"
+  creationTimestamp: "2020-06-04T03:52:01Z"
+  generation: 6
+  name: customer-info-api
+  namespace: development
+  resourceVersion: "18745592"
+  selfLink: /apis/image.openshift.io/v1/namespaces/development/imagestreams/customer-info-api
+  uid: 22f4c20b-391a-4a97-93a8-f680fbc82867
+spec:
+  dockerImageRepository: quay.io/neinnovationorg/customer-info-api
+  lookupPolicy:
+    local: false
+  tags:
+  - annotations: null
+    from:
+      kind: DockerImage
+      name: quay.io/neinnovationorg/customer-info-api:dev
+    generation: 6
+    importPolicy: {}
+    name: dev
+    referencePolicy:
+      type: Source
+status:
+  dockerImageRepository: image-registry.openshift-image-registry.svc:5000/development/customer-info-api
+  tags:
+  - items:
+    - created: "2020-06-11T22:56:44Z"
+      dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+      generation: 6
+      image: sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+    - created: "2020-06-10T01:58:19Z"
+      dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:ef4506c8cd420a4d2caf4b6ce66e85d421f3694768bba03af67e0721f566cdf4
+      generation: 4
+      image: sha256:ef4506c8cd420a4d2caf4b6ce66e85d421f3694768bba03af67e0721f566cdf4
+    - created: "2020-06-04T03:51:56Z"
+      dockerImageReference: quay.io/neinnovationorg/customer-info-api@sha256:15b407621bb5f5941e5f4afc5b289e94d1920b4135de8192758e6cda5d912204
+      generation: 2
+      image: sha256:15b407621bb5f5941e5f4afc5b289e94d1920b4135de8192758e6cda5d912204
+    tag: dev
