@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mongo-connection
+  namespace: development
+data:
+  mongo_collection_name: col_lrqi_customers
+  mongo_connection: 'mongodb://mongodb_user:mongodb_password@mongodb:27017/mongodb?replicaSet=rs0'
+  mongo_db_name: mongodb
