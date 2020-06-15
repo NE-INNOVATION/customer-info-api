@@ -7,5 +7,5 @@ applications:
     DB_NAME: lrqi
     COLLECTION_NAME: col_lrqi_customers
     ISSUER: https://dev-521711.okta.com/oauth2/default
-    CLIENT_ID: '0oadgcu962ydolarc4x6'
+    CLIENT_ID: 0oadgcu962ydolarc4x6
     AUTH_ENABLED: false
