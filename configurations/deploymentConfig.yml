@@ -45,6 +45,21 @@ spec:
             configMapKeyRef:
               key: mongo_collection_name
               name: mongo-connection
+        - name: ISSUER
+          valueFrom:
+            configMapKeyRef:
+              key: auth_issuer
+              name: mongo-connection
+        - name: CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: auth_clientId
+              name: mongo-connection
+        - name: AUTH_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              key: auth_enabled
+              name: mongo-connection
         image: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
         imagePullPolicy: IfNotPresent
         name: customer-info-api

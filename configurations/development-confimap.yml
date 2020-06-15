@@ -7,3 +7,6 @@ data:
   mongo_collection_name: col_lrqi_customers
   mongo_connection: 'mongodb://mongodb_user:mongodb_password@mongodb:27017/mongodb?replicaSet=rs0'
   mongo_db_name: mongodb
+  auth_issuer: 'https://dev-521711.okta.com/oauth2/default'
+  auth_clientId: '0oadgcu962ydolarc4x6'
+  auth_enabled: true
