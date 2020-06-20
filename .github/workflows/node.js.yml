@@ -61,9 +61,6 @@ jobs:
         cmd: |
           'version'
           'project development'
-          'apply -f configurations/imageStream.yml'
-          'apply -f configurations/development-confimap.yml'
-          'apply -f configurations/deploymentConfig.yml'
           'tag --source=docker quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }} development/customer-info-api:${{ steps.extract_branch.outputs.branch }}'
     - name: Scan Image
       uses: Azure/container-scan@v0
