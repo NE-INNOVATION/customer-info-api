@@ -40,7 +40,7 @@ let getCustomerInfo = async (id) => {
 
 let saveCustomerInfo = async (data) => {
   let customer = "";
-  // if (data.id !== "") {
+  // if (data.id) {
   //   customer = await dataStore.findCustomer(data.id);
   // } else {
   customer = {};
@@ -53,11 +53,9 @@ let saveCustomerInfo = async (data) => {
   customer.apt = data.apt;
   customer.zip = data.zipCode;
 
-  if (data.id === "" || data.id === undefined) {
+  if (!data.id) {
     customer.id = crnGen().toString();
   }
-
-  console.log(`${process.env.DB_SERVICE_URL}/${process.env.COLLECTION_NAME}`)
 
   await client.post(
     `${process.env.DB_SERVICE_URL}/${process.env.COLLECTION_NAME}`,
