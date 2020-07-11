@@ -41,8 +41,17 @@ router
   });
 
 let getCustomerInfo = async (id) => {
-  let record = await dataStore.findCustomer(id);
-  return record;
+  try{
+    let record = await dataStore.findCustomer(id);
+    return record;
+  }catch(error){
+    logger.error(
+      `app.api.customers - getting customer#${id} failed - ${JSON.stringify(
+        error
+      )}`
+    );
+  }
+  
 };
 
 let saveCustomerInfo = async (data) => {
