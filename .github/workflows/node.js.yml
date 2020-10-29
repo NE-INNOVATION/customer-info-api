@@ -5,7 +5,7 @@ name: Customer Info - Node.js CI
 
 on:
   push:
-    branches: [ argocd ]
+    branches: [ dev, main ]
 
 jobs:
   build:
