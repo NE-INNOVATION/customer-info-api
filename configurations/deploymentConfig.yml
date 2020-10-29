@@ -73,13 +73,13 @@ spec:
     type: ImageChange
   - type: ConfigChange
 
+---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: customer-info-api
   namespace: development
 spec:
-  subdomain: ''
   to:
     kind: Service
     name: customer-info-api
