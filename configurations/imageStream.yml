@@ -15,8 +15,8 @@ spec:
   lookupPolicy:
     local: false
   tags:
-  - annotations: null
-    from:
+#  - annotations: null
+   - from:
       kind: DockerImage
       name: quay.io/neinnovationorg/customer-info-api:dev
     generation: 6
