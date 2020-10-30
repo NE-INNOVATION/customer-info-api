@@ -35,7 +35,6 @@ jobs:
         echo ::set-output name=image-name::$(echo quay.io/neinnovationorg/customer-info-api})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
         echo ::set-output name=docker_repo::$(echo /neinnovationorg/customer-info-api)
-        echo ::set-output name=imagename::$(echo customerinfoapi-50)
         
         echo ${{ env.resourceGroup1 }}
         
