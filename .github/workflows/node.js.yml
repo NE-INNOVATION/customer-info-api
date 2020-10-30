@@ -31,7 +31,7 @@ jobs:
         echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
         echo ::set-output name=image-name::$(echo quay.io/neinnovationorg/customer-info-api})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
-        echo ::set-output name=docker_repo::$(echo /neinnovationorg/customer-info-api) 
+        echo ::set-output name=docker_repo::$(echo /neinnovationorg/customer-info-api)
     - name: Login to Podman
       id: login
       run:  |
@@ -44,6 +44,9 @@ jobs:
     - name: Push Image to Github Registry
       run: |
           podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}
+    - name: Pull Image tag 
+      run: |
+          podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}
 #    - name: OpenShift Action
 #      uses: redhat-developer/openshift-actions@v2.0
 #      with:
