@@ -47,12 +47,12 @@ jobs:
     - name: Build Image using Podman
       run: |
          podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
-    - name: Push Image to Github Registry
+    - name: Push Image to Quay Registry
       run: |
           podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
-    - name: Pull Image tag 
-      run: |
-          podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
+#    - name: Pull Image tag 
+#      run: |
+#          podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
 #    - name: OpenShift Action
 #      uses: redhat-developer/openshift-actions@v2.0
 #      with:
