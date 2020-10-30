@@ -42,10 +42,10 @@ jobs:
          podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
-         podman build . -t customerinfoapi-50 quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }} --cgroup-manager=cgroupfs
+         podman build . -t quay.io/neinnovationorg/customer-info-api:customerinfoapi-50 --cgroup-manager=cgroupfs
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}
+          podman push quay.io/neinnovationorg/customer-info-api:customerinfoapi-50
     - name: Pull Image tag 
       run: |
           podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}
