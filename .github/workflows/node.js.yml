@@ -8,7 +8,7 @@ on:
     branches: [ dev, main ]
 
 env:
-  resourceGroup1: ${{ github.run_id }}-${{ github.run_number }}
+  resourceGroup1: ${{ steps.extract_branch.outputs.branch }}-${{ github.run_number }}
   
 jobs:
   build:
