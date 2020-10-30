@@ -8,7 +8,7 @@ on:
     branches: [ dev, main ]
 
 env:
-  resourceGroup1: ${{ steps.extract_branch.outputs.branch }}-${{ github.run_number }}
+  resourceGroup1: ${{ github.run_number }}
   
 jobs:
   build:
@@ -47,13 +47,13 @@ jobs:
          podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
-         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
+         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/neinnovationorg/customer-info-api:${{ env.resourceGroup1 }}
+          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
     - name: Pull Image tag 
       run: |
-          podman pull quay.io/neinnovationorg/customer-info-api:${{ env.resourceGroup1 }}
+          podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
 #    - name: OpenShift Action
 #      uses: redhat-developer/openshift-actions@v2.0
 #      with:
@@ -70,7 +70,7 @@ jobs:
       uses: Azure/container-scan@v0
       continue-on-error: true
       with:
-        image-name: quay.io/neinnovationorg/customer-info-api:${{ env.resourceGroup1 }}
+        image-name: quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
         username: ${{ secrets.docker_username }}
         password: ${{ secrets.docker_password }}
         token: ${{ github.token }}
