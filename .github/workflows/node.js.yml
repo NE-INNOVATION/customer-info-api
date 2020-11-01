@@ -86,11 +86,11 @@ jobs:
          cd ..
          mkdir tempsampleappconfig
          cd tempsampleappconfig
-         git clone -b main https://parimalpate123:5f0da90c9b007c24f455295bc58adde957bed832@github.com/NE-INNOVATION/customer-info-api-config.git
+         git clone -b main https://parimalpate123:5f0da90c9b007c24f455295bc58adde957bed832@github.com/NE-INNOVATION/sample-app-config.git
          cd ../tempsampleapp/customer-info-api
          git pull
-         cp -rf configurations/* ../../tempsampleappconfig/customer-info-api-config/configurations/
-         cd ../../tempsampleappconfig/customer-info-api-config/
+         cp -rf configurations/* ../../tempsampleappconfig/sample-app-config/configurations/
+         cd ../../tempsampleappconfig/sample-app-config/
          git commit -am "update tag"
          git push
                   
