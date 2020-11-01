@@ -60,7 +60,7 @@ jobs:
 #      run: |
 #          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
 
-    - name: Find and Replace Tag in same repository
+    - name: Find and Replace Tag in same the Repository
       shell: bash
       run:  |
          sed -i 's/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup2 }}/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}/g' configurations/deploymentConfig.yml
