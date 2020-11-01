@@ -6,6 +6,8 @@ name: Customer Info - Node.js CI
 on:
   push:
     branches: [ dev, main ]
+    paths-ignore:
+      - 'configurations/**'
 
 env:
   resourceGroup1: ${{ github.run_number }}
