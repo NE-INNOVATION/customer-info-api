@@ -107,7 +107,7 @@ jobs:
         pwd
         cd configurations
         ls
-        cp -rf /home/runner/work/customer-info-api/customer-info-api/tempsampleapp1/customer-info-api/configurations/* /home/runner/work/customer-info-api/customer-info-api/configurations
+        cp tempsampleapp1/customer-info-api/configurations/* .
         git commit -am "update tag"
         git push
         git config --global user.email "parimalpatel123@gmail.com"
