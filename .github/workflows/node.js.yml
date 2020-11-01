@@ -31,6 +31,14 @@ jobs:
         token: ${{ secrets.ACCESS_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repository: NE-INNOVATION/customer-info-api
+    - name: Checkout config repo
+      uses: actions/checkout@v2
+      with:
+        repository: NE-INNOVATION/customer-info-api-config
+        token: ${{ secrets.ACCESS_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
+        path: configurations
+    
+    
     - name: Extract branch name
       shell: bash
       run: |
