@@ -88,7 +88,7 @@ jobs:
          git config --global user.name "parimalpate123"
          git clone -b dev https://parimalpate123:${{ secrets.GITHUB_TOKEN }}@github.com/NE-INNOVATION/customer-info-api.git
          pwd
-         cd customer-info-api
+         cd customer-info-api/configurations
          ls -a         
          cd ..
          mkdir tempsampleappconfig1
