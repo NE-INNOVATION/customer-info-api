@@ -10,6 +10,7 @@ on:
 env:
   resourceGroup1: ${{ github.run_number }}
   resourceGroup2: ${{ github.run_number-1 }}
+  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   
 jobs:
   build:
@@ -23,6 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repository: NE-INNOVATION/customer-info-api
     - name: Extract branch name
@@ -78,15 +80,15 @@ jobs:
          mkdir tempsampleapp
          cd tempsampleapp
          echo "remote operations"
-         git clone -b dev https://parimalpate123:e319f7e846f1cfef44830a326a3c100e82599626@github.com/NE-INNOVATION/customer-info-api.git
+         git clone -b dev https://parimalpate123:bf9319f04687bd3e552f20148b0371083b313be3@github.com/NE-INNOVATION/customer-info-api.git
          cd ..
          mkdir tempsampleappconfig
          cd tempsampleappconfig
-         git clone -b main https://parimalpate123:e319f7e846f1cfef44830a326a3c100e82599626@github.com/NE-INNOVATION/sample-app-config.git
+         git clone -b main https://parimalpate123:bf9319f04687bd3e552f20148b0371083b313be3@github.com/NE-INNOVATION/customer-info-api-config.git
          cd ../tempsampleapp/customer-info-api
          git pull
-         cp -rf configurations/* ../../tempsampleappconfig/sample-app-config/configurations/
-         cd ../../tempsampleappconfig/sample-app-config/
+         cp -rf configurations/* ../../tempsampleappconfig/customer-info-api-config/configurations/
+         cd ../../tempsampleappconfig/customer-info-api-config/
          git commit -am "update tag"
          git push
                   
