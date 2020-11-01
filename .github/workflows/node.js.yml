@@ -105,9 +105,7 @@ jobs:
          git config --global user.name "parimalpate123"
          pwd
          ls
-         cd ../tempsampleapp1/customer-info-api
-         pwd
-         ls
+
          
 
                   
