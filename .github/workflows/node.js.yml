@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.ACCESS_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repository: NE-INNOVATION/customer-info-api
     - name: Extract branch name
@@ -80,11 +80,11 @@ jobs:
          mkdir tempsampleapp1
          cd tempsampleapp1
          echo "remote operations"
-         git clone -b dev https://parimalpate123:6634bafaeff91823beafbd00593b5a12757c2434@github.com/NE-INNOVATION/customer-info-api.git
+         git clone -b dev https://github.com/NE-INNOVATION/customer-info-api.git
          cd ..
          mkdir tempsampleappconfig1
          cd tempsampleappconfig1
-         git clone -b main https://parimalpate123:6634bafaeff91823beafbd00593b5a12757c2434@github.com/NE-INNOVATION/customer-info-api-config.git
+         git clone -b main https://github.com/NE-INNOVATION/customer-info-api-config.git
          cd ../tempsampleapp1/customer-info-api
          git pull
          cp -rf configurations/* ../../tempsampleappconfig1/customer-info-api-config/configurations/
