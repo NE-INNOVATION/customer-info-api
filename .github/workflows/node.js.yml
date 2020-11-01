@@ -9,7 +9,7 @@ on:
 
 env:
   resourceGroup1: ${{ github.run_number }}
-  resourceGroup2: ${{ github.run_number }} -1
+  resourceGroup2: ${{ github.run_number-1 }}
   
 jobs:
   build:
