@@ -89,7 +89,8 @@ jobs:
          git clone -b dev https://parimalpate123:${{ secrets.GITHUB_TOKEN }}@github.com/NE-INNOVATION/customer-info-api.git
          pwd
          cd customer-info-api/configurations
-         ls -a         
+         ls -a
+         cat deploymentConfig.yml         
          cd ..
          mkdir tempsampleappconfig1
          cd tempsampleappconfig1
@@ -107,6 +108,7 @@ jobs:
         pwd
         cd configurations
         ls
+        cat deploymentConfig.yml
         git config --global user.email "parimalpatel123@gmail.com"
         git config --global user.name "parimalpate123"
 
