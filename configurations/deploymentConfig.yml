@@ -45,7 +45,7 @@ spec:
             configMapKeyRef:
               key: mongo_collection_name
               name: mongo-connection
-        image: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+        image: 'quay.io/neinnovationorg/customer-info-api:dev-56'
         imagePullPolicy: IfNotPresent
         name: customer-info-api
         ports:
@@ -62,17 +62,15 @@ spec:
   test: false
   triggers:
   - imageChangeParams:
-      automatic: true
       containerNames:
       - customer-info-api
       from:
         kind: ImageStreamTag
         name: customer-info-api:dev
         namespace: development
-      lastTriggeredImage: quay.io/neinnovationorg/customer-info-api@sha256:22662314cd684ea0c3a4839045af0c3cf70649680bd756c87d0dca041e7fa6b2
+      lastTriggeredImage: 'quay.io/neinnovationorg/customer-info-api:dev-56'
     type: ImageChange
   - type: ConfigChange
-
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
@@ -80,11 +78,20 @@ metadata:
   name: customer-info-api
   namespace: development
 spec:
+  host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
   to:
     kind: Service
     name: customer-info-api
     weight: 100
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
-  wildcardPolicy: None  
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: customer-info-api-development.apps.awsopenshift.ne-innovation.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.awsopenshift.ne-innovation.com
