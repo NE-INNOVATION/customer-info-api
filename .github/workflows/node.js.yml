@@ -77,18 +77,18 @@ jobs:
     - name: Create Pull request for config Repository
       shell: bash
       run:  |
-         mkdir tempsampleapp
-         cd tempsampleapp
+         mkdir tempsampleapp1
+         cd tempsampleapp1
          echo "remote operations"
-         git clone -b dev https://parimalpate123:bf9319f04687bd3e552f20148b0371083b313be3@github.com/NE-INNOVATION/customer-info-api.git
+         git clone -b dev https://parimalpate123:6634bafaeff91823beafbd00593b5a12757c2434@github.com/NE-INNOVATION/customer-info-api.git
          cd ..
-         mkdir tempsampleappconfig
-         cd tempsampleappconfig
-         git clone -b main https://parimalpate123:bf9319f04687bd3e552f20148b0371083b313be3@github.com/NE-INNOVATION/sample-app-config.git
-         cd ../tempsampleapp/customer-info-api
+         mkdir tempsampleappconfig1
+         cd tempsampleappconfig1
+         git clone -b main https://parimalpate123:6634bafaeff91823beafbd00593b5a12757c2434@github.com/NE-INNOVATION/customer-info-api-config.git
+         cd ../tempsampleapp1/customer-info-api
          git pull
-         cp -rf configurations/* ../../tempsampleappconfig/sample-app-config/configurations/
-         cd ../../tempsampleappconfig/sample-app-config/
+         cp -rf configurations/* ../../tempsampleappconfig1/customer-info-api-config/configurations/
+         cd ../../tempsampleappconfig1/customer-info-api-config1/
          git commit -am "update tag"
          git push
                   
