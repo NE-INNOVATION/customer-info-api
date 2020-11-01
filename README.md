@@ -1,3 +1,3 @@
-# customers-api - test
+# customers-api
 Customers-Api
 
