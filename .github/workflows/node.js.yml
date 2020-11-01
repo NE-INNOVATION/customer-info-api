@@ -68,8 +68,8 @@ jobs:
          git config --global user.name "parimalpate123"
          git add .
          git commit -m "update image tag"
-         git fetch origin main
-         git push origin HEAD:main
+         git fetch origin dev
+         git push origin HEAD:dev
 
                   
 
