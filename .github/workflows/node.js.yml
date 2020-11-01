@@ -51,18 +51,18 @@ jobs:
     - run: echo $resourceGroup1
     - run: echo $resourceGroup2
 
-#    - name: Login to Podman
-#      id: login
-#      run:  |
-#         echo ${{ steps.extract_branch.outputs.branch }}
-#         echo ${{ steps.extract_branch.outputs.sha_short }}
-#         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
-#    - name: Build Image using Podman
-#      run: |
-#         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
-#    - name: Push Image to Quay Registry
-#      run: |
-#          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
+    - name: Login to Podman
+      id: login
+      run:  |
+         echo ${{ steps.extract_branch.outputs.branch }}
+         echo ${{ steps.extract_branch.outputs.sha_short }}
+         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
+    - name: Build Image using Podman
+      run: |
+         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
+    - name: Push Image to Quay Registry
+      run: |
+          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
 
     - name: Find and Replace Tag in same the Repository
       shell: bash
@@ -76,7 +76,7 @@ jobs:
          git push origin HEAD:dev
 
         
-    - name: Create Pull request for config Repository
+    - name: Prep for updating tag to config Repository
       shell: bash
       run:  |
          mkdir tempsampleapp1
