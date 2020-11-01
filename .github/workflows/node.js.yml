@@ -88,6 +88,8 @@ jobs:
          git config --global user.name "parimalpate123"
          echo "remote operations"
          git clone -b dev https://parimalpate123:${{ secrets.GITHUB_TOKEN }}@github.com/NE-INNOVATION/customer-info-api.git
+         pwd
+         ls -a
          cd ..
          mkdir tempsampleappconfig1
          cd tempsampleappconfig1
