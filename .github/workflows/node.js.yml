@@ -51,8 +51,6 @@ jobs:
     - run: echo $resourceGroup1
     - run: echo $resourceGroup2
 
-
-
 #    - name: Login to Podman
 #      id: login
 #      run:  |
