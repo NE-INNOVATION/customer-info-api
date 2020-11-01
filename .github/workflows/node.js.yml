@@ -105,9 +105,8 @@ jobs:
       run:  |
         echo "remote operations"
         pwd
-        cd configurations
+        sed -i 's/dev-56/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}/g' configurations/deploymentConfig.yml
         ls
-        cp tempsampleapp1/customer-info-api/configurations/* .
         git commit -am "update tag"
         git push
         git config --global user.email "parimalpatel123@gmail.com"
