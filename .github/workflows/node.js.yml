@@ -31,13 +31,6 @@ jobs:
         token: ${{ secrets.ACCESS_TOKEN }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repository: NE-INNOVATION/customer-info-api
-    - name: Checkout config repo
-      uses: actions/checkout@v2
-      with:
-        repository: NE-INNOVATION/customer-info-api-config
-        token: ${{ secrets.ACCESS_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
-        path: configurations
-    
     
     - name: Extract branch name
       shell: bash
@@ -85,7 +78,7 @@ jobs:
          git fetch origin dev
          git push origin HEAD:dev
 
-
+        
     - name: Create Pull request for config Repository
       shell: bash
       run:  |
@@ -96,6 +89,16 @@ jobs:
          echo "remote operations"
          git clone -b dev https://parimalpate123:${{ secrets.GITHUB_TOKEN }}@github.com/NE-INNOVATION/customer-info-api.git
          cd ..
+         
+    - name: Checkout config repo
+      uses: actions/checkout@v2
+      with:
+        repository: NE-INNOVATION/customer-info-api-config
+        token: ${{ secrets.ACCESS_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
+
+    - name: Create Pull request for config Repository
+      shell: bash
+      run:  |
          mkdir tempsampleappconfig1
          cd tempsampleappconfig1
          git config --global user.email "parimalpatel123@gmail.com"
