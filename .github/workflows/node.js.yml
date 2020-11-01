@@ -39,6 +39,7 @@ jobs:
         echo ::set-env name=resourceGroup2::$(($resourceGroup1-1))
         
         echo ${{ env.resourceGroup1 }}
+    - run: echo $resourceGroup1
     - run: echo $resourceGroup2
         
 #    - name: Login to Podman
