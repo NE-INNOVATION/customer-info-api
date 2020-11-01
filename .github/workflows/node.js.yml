@@ -9,6 +9,7 @@ on:
 
 env:
   resourceGroup1: ${{ github.run_number }}
+  resourceGroup2: ${{ github.run_number }} -1
   
 jobs:
   build:
@@ -37,19 +38,20 @@ jobs:
         echo ::set-output name=docker_repo::$(echo /neinnovationorg/customer-info-api)
         
         echo ${{ env.resourceGroup1 }}
+        echo ${{ env.resourceGroup2 }}
         
-    - name: Login to Podman
-      id: login
-      run:  |
-         echo ${{ steps.extract_branch.outputs.branch }}
-         echo ${{ steps.extract_branch.outputs.sha_short }}
-         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
-    - name: Build Image using Podman
-      run: |
-         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
-    - name: Push Image to Quay Registry
-      run: |
-          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
+#    - name: Login to Podman
+#      id: login
+#      run:  |
+#         echo ${{ steps.extract_branch.outputs.branch }}
+#         echo ${{ steps.extract_branch.outputs.sha_short }}
+#         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
+#    - name: Build Image using Podman
+#      run: |
+#         podman build . -t quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }} --cgroup-manager=cgroupfs
+#    - name: Push Image to Quay Registry
+#      run: |
+#          podman push quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
 #    - name: Pull Image tag 
 #      run: |
 #          podman pull quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}
