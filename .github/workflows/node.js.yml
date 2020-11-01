@@ -82,11 +82,11 @@ jobs:
          echo "remote operations"
          git config --global user.email "parimalpatel123@gmail.com"
          git config --global user.name "parimalpate123"         
-         git clone -b dev https://parimalpate123:5f0da90c9b007c24f455295bc58adde957bed832@github.com/NE-INNOVATION/customer-info-api.git
+         git clone -b dev https://parimalpate123:e319f7e846f1cfef44830a326a3c100e82599626@github.com/NE-INNOVATION/customer-info-api.git
          cd ..
          mkdir tempsampleappconfig
          cd tempsampleappconfig
-         git clone -b main https://parimalpate123:5f0da90c9b007c24f455295bc58adde957bed832@github.com/NE-INNOVATION/sample-app-config.git
+         git clone -b main https://parimalpate123:e319f7e846f1cfef44830a326a3c100e82599626@github.com/NE-INNOVATION/sample-app-config.git
          cd ../tempsampleapp/customer-info-api
          git pull
          cp -rf configurations/* ../../tempsampleappconfig/sample-app-config/configurations/
