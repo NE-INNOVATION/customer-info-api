@@ -36,9 +36,10 @@ jobs:
         echo ::set-output name=image-name::$(echo quay.io/neinnovationorg/customer-info-api})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
         echo ::set-output name=docker_repo::$(echo /neinnovationorg/customer-info-api)
+        echo ::set-env name=resourceGroup2::$(($resourceGroup1-1))
         
         echo ${{ env.resourceGroup1 }}
-        echo ${{ env.resourceGroup2 }}
+    - run: echo $resourceGroup2
         
 #    - name: Login to Podman
 #      id: login
