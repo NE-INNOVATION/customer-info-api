@@ -99,12 +99,15 @@ jobs:
     - name: Create Pull request for config Repository
       shell: bash
       run:  |
-         mkdir tempsampleappconfig1
-         cd tempsampleappconfig1
-         git config --global user.email "parimalpatel123@gmail.com"
-         git config --global user.name "parimalpate123"
-         pwd
-         ls
+        pwd
+        ls
+        mkdir tempsampleappconfig1
+        cd tempsampleappconfig1
+        git config --global user.email "parimalpatel123@gmail.com"
+        git config --global user.name "parimalpate123"
+        pwd
+        ls -a
+        
 
          
 
