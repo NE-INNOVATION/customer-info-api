@@ -63,7 +63,7 @@ jobs:
     - name: Find and Replace Tag in same repository
       shell: bash
       run:  |
-         sed -i 's/$resourceGroup2/$resourceGroup1/g' configurations/deploymentConfig.yml
+         sed -i 's/${{ env.resourceGroup2 }}/${{ env.resourceGroup1 }}/g' configurations/deploymentConfig.yml
          git config --global user.email "parimalpatel123@gmail.com"
          git config --global user.name "parimalpate123"
          git add .
