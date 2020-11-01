@@ -105,7 +105,7 @@ jobs:
       run:  |
         echo "remote operations"
         pwd
-        sed -i 's/dev-56/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}/g' configurations/deploymentConfig.yml
+        sed -i 's/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup2 }}/${{ steps.extract_branch.outputs.branch }}-${{ env.resourceGroup1 }}/g' configurations/deploymentConfig.yml
         ls
         git commit -am "update tag"
         git push
