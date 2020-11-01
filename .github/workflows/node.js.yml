@@ -10,7 +10,7 @@ on:
 env:
   resourceGroup1: ${{ github.run_number }}
   resourceGroup2: ${{ github.run_number-1 }}
-  GITHUB_TOKEN: ${{ ACCESS_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   
   
 jobs:
