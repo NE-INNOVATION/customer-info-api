@@ -1,4 +1,4 @@
 # customers-api
 Customers-Api
-Integration with ArgoCD for OCP deployment
+Integration with ArgoCD for OCP deployment with config repo
 
