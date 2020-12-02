@@ -2,8 +2,6 @@ const express = require("express");
 var rn = require("random-number");
 const router = express.Router({ mergeParams: true });
 const dataStore = require("../../data/dataStore");
-const axios = require("axios");
-const { Agent } = require("https");
 const winston = require("winston");
 const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
@@ -21,12 +19,6 @@ var crnGen = rn.generator({
   integer: true,
 });
 
-const client = axios.create({
-  httpsAgent: new Agent({
-    rejectUnauthorized: false,
-  }),
-});
-
 router
   .route("/customerInfo/:id?")
   .get(async (req, res) => {
@@ -41,28 +33,27 @@ router
   });
 
 let getCustomerInfo = async (id) => {
-  try{
+  try {
     let record = await dataStore.findCustomer(id);
     return record;
-  }catch(error){
+  } catch (error) {
     logger.error(
       `app.api.customers - getting customer#${id} failed - ${JSON.stringify(
         error
       )}`
     );
   }
-  
 };
 
 let saveCustomerInfo = async (data) => {
   try {
     let customer = "";
-    // if (data.id) {
-    //   customer = await dataStore.findCustomer(data.id);
-    // } else {
-    customer = {};
-    customer.quoteId = gen().toString();
-    //}
+    if (data.id) {
+      customer = await dataStore.findCustomer(data.id);
+    } else {
+      customer = {};
+      customer.quoteId = gen().toString();
+    }
     customer.firstName = data.firstName;
     customer.lastName = data.lastName;
     customer.dob = data.dob;
@@ -74,17 +65,7 @@ let saveCustomerInfo = async (data) => {
       customer.id = crnGen().toString();
     }
 
-    await client.post(
-      `${process.env.DB_SERVICE_URL}/${process.env.COLLECTION_NAME}`,
-      customer,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    //dataStore.addCustomer(customer)
+    await dataStore.addCustomer(customer);
 
     return { crn: customer.id, quoteid: customer.quoteId };
   } catch (error) {

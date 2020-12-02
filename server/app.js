@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { route } = require('./api')
-// const dataStore = require('./data/dataStore')
+const dataStore = require('./data/dataStore')
 const health = require('@cloudnative/health-connect')
 const winston = require('winston')
 const logger = winston.createLogger({
@@ -35,7 +35,7 @@ module.exports = () => {
   
   app.use(bodyParser.json())
   app.use('/api', route)
-  // dataStore.createDbConnection()
+  dataStore.createDbConnection()
   
   return app; 
 }
