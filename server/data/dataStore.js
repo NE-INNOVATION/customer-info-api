@@ -35,7 +35,7 @@ const getDbConnection = () => {
 const find = async (customerId) => {
     let client = await clientPromise
     let db = client.db(dbName)
-    let filter = { id: customerId, type: 'customer' }
+    let filter = { id: customerId }
     return new Promise((resolve, reject) => {
         try {
             db.collection(collection)
