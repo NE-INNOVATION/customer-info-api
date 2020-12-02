@@ -20,25 +20,25 @@ var crnGen = rn.generator({
 });
 
 router
-  .route("/customerInfo/:id?")
+  .route("/customerInfo/:quoteId?")
   .get(async (req, res) => {
     logger.info(
-      `app.api.customers - getting customer with id - ${req.params.id}`
+      `app.api.customers - getting customer with quoteId - ${req.params.quoteId}`
     );
-    res.send(JSON.stringify(await getCustomerInfo(req.params.id)));
+    res.send(JSON.stringify(await getCustomerInfo(req.params.quoteId)));
   })
   .post(async (req, res) => {
     logger.info(`app.api.customers - creating new customer`);
     res.send(JSON.stringify(await saveCustomerInfo(req.body)));
   });
 
-let getCustomerInfo = async (id) => {
+let getCustomerInfo = async (quoteId) => {
   try {
-    let record = await dataStore.findCustomer(id);
+    let record = await dataStore.findCustomer(quoteId);
     return record;
   } catch (error) {
     logger.error(
-      `app.api.customers - getting customer#${id} failed - ${JSON.stringify(
+      `app.api.customers - getting customer#${quoteId} failed - ${JSON.stringify(
         error
       )}`
     );

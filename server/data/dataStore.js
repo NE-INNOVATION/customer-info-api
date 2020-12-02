@@ -33,10 +33,10 @@ const getDbConnection = () => {
   });
 };
 
-const findCustomer = async (customerId) => {
+const findCustomer = async (quoteId) => {
   let client = await clientPromise;
   let db = client.db(dbName);
-  let filter = { id: customerId };
+  let filter = { quoteId: quoteId };
   return new Promise((resolve, reject) => {
     try {
       db.collection(collection).findOne(filter, async (err, customer) => {
