@@ -28,7 +28,7 @@ const client = axios.create({
 });
 
 router
-  .route("/customerInfo/:id")
+  .route("/customerInfo/:id?")
   .get(async (req, res) => {
     logger.info(
       `app.api.customers - getting customer with id - ${req.params.id}`
