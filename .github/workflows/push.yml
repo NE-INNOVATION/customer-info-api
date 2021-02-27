@@ -53,8 +53,8 @@ jobs:
           # Oc command to be executed
           cmd: |
             'version'
-            'project stage'
-            'tag --source=docker quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }} stage/customer-info-api:${{ steps.extract_branch.outputs.branch }}'
+            'project development'
+            'tag --source=docker quay.io/neinnovationorg/customer-info-api:${{ steps.extract_branch.outputs.branch }} development/customer-info-api:${{ steps.extract_branch.outputs.branch }}'
       - name: OpenShift Action - Azure
         uses: redhat-developer/openshift-actions@v2.0
         with:
