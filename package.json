@@ -9,12 +9,13 @@
   },
   "dependencies": {
     "@cloudnative/health-connect": "^2.1.0",
-    "body-parser": "^1.19.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "https": "^1.0.0",
-    "mongodb": "^3.5.6",
-    "random-number": "0.0.9",
+    "express-validator": "^6.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.18",
     "winston": "^3.3.3"
   },
   "repository": {
@@ -30,5 +31,9 @@
   "engines": {
     "node": "10.X.X",
     "npm": "6.X.X"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7"
   }
 }
