@@ -17,7 +17,7 @@ const CustomerSchema = new Schema({
     type: Date,
     required: true,
   },
-  stAddress: {
+  stAddr: {
     type: String,
     required: true,
   },
@@ -25,10 +25,10 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  zip: {
+  zipCode: {
     type: String,
     required: true,
   },
 });
 
-module.exports = Customer = mongoose.model("customer", CustomerSchema);
+module.exports = Customer = mongoose.model("customers", CustomerSchema);
