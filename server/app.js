@@ -6,14 +6,14 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-// Connect Database
-connectDB();
-
 const healthcheck = new health.HealthChecker();
 
 module.exports = () => {
   const app = express();
-  app.set("json-spaces", 2);
+  // Connect Database
+  connectDB();
+
+  app.use(express.json({ extended: false }));
   app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -37,7 +37,6 @@ module.exports = () => {
   app.use("/ready", health.ReadinessEndpoint(healthcheck));
   app.use("/health", health.HealthEndpoint(healthcheck));
 
-  app.use(express.json({ extended: false }));
   app.use("/api", require("./api/customer"));
 
   return app;
