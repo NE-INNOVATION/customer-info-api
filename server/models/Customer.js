@@ -31,4 +31,7 @@ const CustomerSchema = new Schema({
   },
 });
 
-module.exports = Customer = mongoose.model("customers", CustomerSchema);
+module.exports = Customer = mongoose.model(
+  "col_lrqi_customers",
+  CustomerSchema
+);
