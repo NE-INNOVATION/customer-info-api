@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const CustomerSchema = new Schema({
@@ -31,7 +31,4 @@ const CustomerSchema = new Schema({
   },
 });
 
-module.exports = Customer = mongoose.model(
-  "col_lrqi_customers",
-  CustomerSchema
-);
+export default mongoose.model("col_lrqi_customers", CustomerSchema);
