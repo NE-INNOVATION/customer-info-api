@@ -11,7 +11,7 @@ provider:
   httpApi:
     cors: true
   environment:
-    MONGO_CONNECTION_STRING: "mongodb+srv://lrqi_db:lrqi_db_pwd@azure-cluster.eiahf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    MONGO_CONNECTION_STRING: "mongodb+srv://lrqi_db:lrqi_db_pwd@azure-cluster.eiahf.mongodb.net/neion?retryWrites=true&w=majority"
 
 functions:
   createCustomer:

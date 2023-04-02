@@ -31,4 +31,4 @@ const CustomerSchema = new Schema({
   },
 });
 
-export default mongoose.model("col_lrqi_customers", CustomerSchema);
+export default mongoose.model("customers", CustomerSchema);
