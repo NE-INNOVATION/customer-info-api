@@ -8,17 +8,6 @@ import MONGO_CONNECTION_STRING from "../env/index.js";
 export default async function createCustomer(body) {
   const { firstName, lastName, dob, stAddr, apt, zipCode } = body;
 
-  console.log(
-    "\n\n\n###",
-    firstName,
-    lastName,
-    dob,
-    stAddr,
-    apt,
-    zipCode,
-    "###\n\n\n"
-  );
-
   if (!firstName || !lastName || !dob || !stAddr || !apt || !zipCode) {
     return createErrorResponse(400, errorConstants.commons.badRequest);
   }

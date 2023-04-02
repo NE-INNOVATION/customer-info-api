@@ -5,7 +5,6 @@ import createCustomer from "./handlers/customer.js";
 export async function handler(event) {
   try {
     const { path, method } = event.requestContext.http;
-    console.log("\n\n\n###", path, method, "###\n\n\n");
 
     if (path === "/api/customers/customerInfo") {
       if (method.toLowerCase() === "post") {

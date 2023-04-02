@@ -1,4 +1,4 @@
-service: cm-projects-api
+service: customer-info-api
 frameworkVersion: "3"
 
 plugins:
